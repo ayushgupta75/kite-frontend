@@ -6,15 +6,20 @@ import ErrorAlert from '../components/ErrorAlert'
 import FormField from '../components/FormField'
 
 export default function SignupPage() {
-  const [email, setEmail] = useState('')
+  const [userId, setUserId] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState(null)
   const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
     setError(null)
-    signup(email, password)
+    if (password !== confirmPassword) {
+      setError('Passwords do not match')
+      return
+    }
+    signup(userId, password)
       .then(() => navigate('/login'))
       .catch((err) => setError(err.message))
   }
@@ -26,16 +31,22 @@ export default function SignupPage() {
         <ErrorAlert message={error} />
         <form onSubmit={handleSubmit}>
           <FormField
-            label="Email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            label="User ID"
+            type="text"
+            value={userId}
+            onChange={(e) => setUserId(e.target.value.toLowerCase())}
           />
           <FormField
             label="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+          />
+          <FormField
+            label="Confirm Password"
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <Button type="submit" variant="primary" className="w-100">
             Sign up

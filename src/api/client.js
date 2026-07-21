@@ -18,11 +18,11 @@ async function apiFetch(path, options = {}) {
   return text ? JSON.parse(text) : null
 }
 
-export const signup = (email, password) =>
-  apiFetch('/auth/signup', { method: 'POST', body: JSON.stringify({ email, password }) })
+export const signup = (userId, password) =>
+  apiFetch('/auth/signup', { method: 'POST', body: JSON.stringify({ userId, password }) })
 
-export const login = (email, password) =>
-  apiFetch('/auth/login', { method: 'POST', body: JSON.stringify({ email, password }) })
+export const login = (userId, password) =>
+  apiFetch('/auth/login', { method: 'POST', body: JSON.stringify({ userId, password }) })
 
 export const logout = () => apiFetch('/auth/logout', { method: 'POST' })
 

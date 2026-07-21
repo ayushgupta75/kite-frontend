@@ -7,7 +7,7 @@ import FormField from '../components/FormField'
 import { useSession } from '../context/SessionContext'
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('')
+  const [userId, setUserId] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
   const navigate = useNavigate()
@@ -16,7 +16,7 @@ export default function LoginPage() {
   const handleSubmit = (e) => {
     e.preventDefault()
     setError(null)
-    login(email, password)
+    login(userId, password)
       .then(refresh)
       .then(() => navigate('/dashboard'))
       .catch((err) => setError(err.message))
@@ -29,10 +29,10 @@ export default function LoginPage() {
         <ErrorAlert message={error} />
         <form onSubmit={handleSubmit}>
           <FormField
-            label="Email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            label="User ID"
+            type="text"
+            value={userId}
+            onChange={(e) => setUserId(e.target.value.toLowerCase())}
           />
           <FormField
             label="Password"
