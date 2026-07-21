@@ -1,6 +1,9 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
+import DashboardLayout from './components/DashboardLayout'
 import Layout from './components/Layout'
-import DashboardPage from './pages/DashboardPage'
+import BuyOrderPage from './pages/BuyOrderPage'
+import ComingSoonPage from './pages/ComingSoonPage'
+import DashboardOverviewPage from './pages/DashboardOverviewPage'
 import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
 
@@ -10,7 +13,12 @@ export default function App() {
       <Route element={<Layout />}>
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index element={<DashboardOverviewPage />} />
+          <Route path="buy" element={<BuyOrderPage />} />
+          <Route path="orders" element={<ComingSoonPage title="Orders" />} />
+          <Route path="portfolio" element={<ComingSoonPage title="Portfolio" />} />
+        </Route>
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Route>
     </Routes>

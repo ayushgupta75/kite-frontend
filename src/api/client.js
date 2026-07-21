@@ -27,3 +27,6 @@ export const login = (userId, password) =>
 export const logout = () => apiFetch('/auth/logout', { method: 'POST' })
 
 export const getSessionStatus = () => apiFetch('/auth/session')
+
+export const placeBuyOrder = (symbol, qty, orderType, price) =>
+  apiFetch('/orders/buy', { method: 'POST', body: JSON.stringify({ symbol, qty, orderType, price }) })

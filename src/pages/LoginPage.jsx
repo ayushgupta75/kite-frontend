@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, Card } from 'react-bootstrap'
+import { Button, Card, Container } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { login } from '../api/client'
 import ErrorAlert from '../components/ErrorAlert'
@@ -23,31 +23,33 @@ export default function LoginPage() {
   }
 
   return (
-    <Card>
-      <Card.Body>
-        <Card.Title className="mb-3">Log in</Card.Title>
-        <ErrorAlert message={error} />
-        <form onSubmit={handleSubmit}>
-          <FormField
-            label="User ID"
-            type="text"
-            value={userId}
-            onChange={(e) => setUserId(e.target.value.toLowerCase())}
-          />
-          <FormField
-            label="Password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Button type="submit" variant="primary" className="w-100">
-            Log in
-          </Button>
-        </form>
-        <p className="mt-3 mb-0 text-center">
-          Don't have an account? <Link to="/signup">Sign up</Link>
-        </p>
-      </Card.Body>
-    </Card>
+    <Container className="py-4" style={{ maxWidth: 480 }}>
+      <Card>
+        <Card.Body>
+          <Card.Title className="mb-3">Log in</Card.Title>
+          <ErrorAlert message={error} />
+          <form onSubmit={handleSubmit}>
+            <FormField
+              label="User ID"
+              type="text"
+              value={userId}
+              onChange={(e) => setUserId(e.target.value.toLowerCase())}
+            />
+            <FormField
+              label="Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <Button type="submit" variant="primary" className="w-100">
+              Log in
+            </Button>
+          </form>
+          <p className="mt-3 mb-0 text-center">
+            Don't have an account? <Link to="/signup">Sign up</Link>
+          </p>
+        </Card.Body>
+      </Card>
+    </Container>
   )
 }
