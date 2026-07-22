@@ -16,7 +16,7 @@ export default function Navbar() {
   return (
     <BsNavbar bg="dark" variant="dark" expand="sm">
       <Container>
-        <BsNavbar.Brand as={Link} to="/">
+        <BsNavbar.Brand as={Link} to="/dashboard">
           Kite
         </BsNavbar.Brand>
         <Nav className="ms-auto align-items-center gap-2">
