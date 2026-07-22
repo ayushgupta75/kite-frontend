@@ -5,6 +5,7 @@ import BuyOrderPage from './pages/BuyOrderPage'
 import ComingSoonPage from './pages/ComingSoonPage'
 import DashboardOverviewPage from './pages/DashboardOverviewPage'
 import LoginPage from './pages/LoginPage'
+import OrderLookupPage from './pages/OrderLookupPage'
 import SignupPage from './pages/SignupPage'
 
 export default function App() {
@@ -16,7 +17,7 @@ export default function App() {
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<DashboardOverviewPage />} />
           <Route path="buy" element={<BuyOrderPage />} />
-          <Route path="orders" element={<ComingSoonPage title="Orders" />} />
+          <Route path="orders" element={<OrderLookupPage />} />
           <Route path="portfolio" element={<ComingSoonPage title="Portfolio" />} />
         </Route>
         <Route path="*" element={<Navigate to="/login" replace />} />

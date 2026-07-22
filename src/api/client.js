@@ -37,3 +37,11 @@ export const getSessionStatus = () => apiFetch('/auth/session')
 
 export const placeBuyOrder = (symbol, qty, orderType, price) =>
   apiFetch('/orders/buy', { method: 'POST', body: JSON.stringify({ symbol, qty, orderType, price }) })
+
+export const getOrderStatus = (orderId) => apiFetch(`/orders/${orderId}`)
+
+export const previewGtt = (orderId, targetPct, slPct) =>
+  apiFetch(`/orders/${orderId}/gtt-preview?${new URLSearchParams({ targetPct, slPct })}`)
+
+export const placeGtt = (orderId, targetPct, slPct) =>
+  apiFetch(`/orders/${orderId}/gtt`, { method: 'POST', body: JSON.stringify({ targetPct, slPct }) })

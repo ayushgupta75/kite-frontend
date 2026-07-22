@@ -3,6 +3,7 @@ import { Alert, Button, Card, Form } from 'react-bootstrap'
 import { placeBuyOrder } from '../api/client'
 import ErrorAlert from '../components/ErrorAlert'
 import FormField from '../components/FormField'
+import GttSection from '../components/GttSection'
 
 const INITIAL_FORM = { symbol: '', qty: '', orderType: 'MARKET', price: '' }
 
@@ -36,7 +37,12 @@ export default function BuyOrderPage() {
       <Card.Body>
         <Card.Title className="mb-3">Buy Stock</Card.Title>
         <ErrorAlert message={error} />
-        {successOrderId && <Alert variant="success">Order placed — ID {successOrderId}</Alert>}
+        {successOrderId && (
+          <>
+            <Alert variant="success">Order placed — ID {successOrderId}</Alert>
+            <GttSection key={successOrderId} orderId={successOrderId} />
+          </>
+        )}
         <form onSubmit={handleSubmit}>
           <FormField
             label="Symbol"
